@@ -35,8 +35,13 @@ async function download() {
   const zip = new JSZip()
   const theme = zip.folder("theme")
 
-  const colorKT = customTheme.value.toColorKT(packageId.value)
-  theme!.file("Color.kt", colorKT)
+  const colorsKT = customTheme.value.toColorsKT(packageId.value)
+  theme!.file("Colors.kt", colorsKT)
+
+  if (customTheme.value.customColors.length != 0) {
+    const extendedColorsKT = customTheme.value.toExtendedColorsKT(packageId.value)
+    theme!.file("ExtendedColors.kt", extendedColorsKT)
+  }
 
   const themeKT = customTheme.value.toThemeKT(packageId.value)
   theme!.file("Theme.kt", themeKT)

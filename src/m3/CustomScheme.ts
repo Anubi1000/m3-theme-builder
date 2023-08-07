@@ -1,4 +1,4 @@
-import {ColorGroup, CorePalette, CustomColorGroup, hexFromArgb, TonalPalette} from "@material/material-color-utilities";
+import {ColorGroup, CorePalette, TonalPalette} from "@material/material-color-utilities";
 
 export class CustomScheme {
     readonly primaryGroup: ColorGroup
@@ -151,74 +151,6 @@ export class CustomScheme {
 
             true
         )
-    }
-
-    toColorKTContent(customColors: CustomColorGroup[]): string {
-        const scheme = this
-        let buffer = ""
-
-        function generateLine(color: number, name: string, space: string) {
-            const hex = hexFromArgb(color).slice(1).toUpperCase()
-            const uiMode = scheme.isDark ? "dark" : "light";
-            buffer += `val ${space}_${uiMode}_${name} = Color(0xFF${hex})\n`
-        }
-
-        const generateM3Line = (color: number, name: string) => generateLine(color, name, "m3")
-        const generateSingleM3 = (name: string) => {
-            // @ts-ignore
-            generateM3Line(scheme[name], name)
-        };
-
-        const generateCustomLine = (color: number, name: string) => generateLine(color, name, "custom")
-
-        function generateColorGroup(colorGroup: ColorGroup, name: string, lineFunction: (color: number, name: string) => void = generateM3Line) {
-            const nameSmall = name
-            const nameLarge = name.charAt(0).toUpperCase() + name.slice(1)
-
-            lineFunction(colorGroup.color, nameSmall)
-            lineFunction(colorGroup.onColor, `on${nameLarge}`)
-            lineFunction(colorGroup.colorContainer, `${nameSmall}Container`)
-            lineFunction(colorGroup.onColorContainer, `on${nameLarge}Container`)
-        }
-
-        generateColorGroup(this.primaryGroup, "primary")
-        generateColorGroup(this.secondaryGroup, "secondary")
-        generateColorGroup(this.tertiaryGroup, "tertiary")
-        generateColorGroup(this.errorGroup, "error")
-
-        generateSingleM3("surfaceDim")
-        generateSingleM3("surface")
-        generateSingleM3("surfaceBright")
-
-        generateSingleM3("surfaceContainerLowest")
-        generateSingleM3("surfaceContainerLow")
-        generateSingleM3("surfaceContainer")
-        generateSingleM3("surfaceContainerHigh")
-        generateSingleM3("surfaceContainerHighest")
-
-        generateSingleM3("onSurface")
-        generateSingleM3("surfaceVariant")
-        generateSingleM3("onSurfaceVariant")
-
-        generateSingleM3("background")
-        generateSingleM3("onBackground")
-
-        generateSingleM3("outline")
-        generateSingleM3("outlineVariant")
-
-        generateSingleM3("scrim")
-
-        generateSingleM3("inverseSurface")
-        generateSingleM3("inverseOnSurface")
-        generateSingleM3("inversePrimary")
-
-        for (const customColorGroup of customColors) {
-            const colorName = customColorGroup.color.name.charAt(0).toLowerCase() + customColorGroup.color.name.slice(1)
-            const colorGroup = this.isDark ? customColorGroup.dark : customColorGroup.light;
-            generateColorGroup(colorGroup, colorName, generateCustomLine)
-        }
-
-        return buffer
     }
 }
 
