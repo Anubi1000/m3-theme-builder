@@ -5,8 +5,8 @@ import ExtendedColorInput from "./components/ExtendedColorInput.vue";
 import {customThemeFromColor} from "./m3/CustomTheme.ts";
 import {argbFromHex} from "@material/material-color-utilities";
 import SchemeColorBlock from "./components/SchemeColorBlock.vue";
-import * as JSZip from "jszip";
-import * as FileSaver from "file-saver";
+import JSZip from "jszip";
+import FileSaver from "file-saver";
 import MainColorInput from "./components/MainColorInput.vue";
 
 const primaryColor = ref("#49e851")
