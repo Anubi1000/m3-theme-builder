@@ -33,6 +33,7 @@ export class CustomScheme {
     readonly inversePrimary: number
 
     readonly isDark: boolean
+    readonly [key: string]: number | boolean | ColorGroup
 
     private constructor(
         primaryGroup: ColorGroup, secondaryGroup: ColorGroup, tertiaryGroup: ColorGroup, errorGroup: ColorGroup,

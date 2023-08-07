@@ -27,7 +27,7 @@ function generateContent(scheme: CustomScheme, customColors: CustomColorGroup[])
 
     const generateM3Line = (color: number, name: string) => generateLine(color, name, "m3")
     const generateSingleM3 = (name: string) => {
-        generateM3Line(scheme[name], name)
+        generateM3Line(scheme[name] as number, name)
     }
 
     const generateCustomLine = (color: number, name: string) => generateLine(color, name, "custom")

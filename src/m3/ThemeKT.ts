@@ -10,6 +10,8 @@ export function generateThemeKT(theme: CustomTheme, packageId: string): string {
     buffer += "\n"
     buffer += generateContent(true)
 
+    theme
+
     console.log(buffer)
 
     return buffer
