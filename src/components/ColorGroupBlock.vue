@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {ColorGroup} from "@material/material-color-utilities";
-import ColorBlock from "./ColorBlock.vue";
+import {ColorGroup} from "@material/material-color-utilities"
+import ColorBlock from "./ColorBlock.vue"
 
 defineProps<{
   name: string,
@@ -10,12 +10,28 @@ defineProps<{
 
 <template>
   <tr>
-    <ColorBlock :background-color="colorGroup.color" :name="name" :foreground-color="colorGroup.onColor"/>
-    <ColorBlock :background-color="colorGroup.onColor" :name="`On ${name}`" :foreground-color="colorGroup.color"/>
-    <ColorBlock :background-color="colorGroup.colorContainer" :name="`${name} Container`" :foreground-color="colorGroup.onColorContainer"/>
-    <ColorBlock :background-color="colorGroup.onColorContainer" :name="`On ${name} Container`" :foreground-color="colorGroup.colorContainer"/>
+    <ColorBlock
+      :background-color="colorGroup.color"
+      :name="name"
+      :foreground-color="colorGroup.onColor"
+    />
+    <ColorBlock
+      :background-color="colorGroup.onColor"
+      :name="`On ${name}`"
+      :foreground-color="colorGroup.color"
+    />
+    <ColorBlock
+      :background-color="colorGroup.colorContainer"
+      :name="`${name} Container`"
+      :foreground-color="colorGroup.onColorContainer"
+    />
+    <ColorBlock
+      :background-color="colorGroup.onColorContainer"
+      :name="`On ${name} Container`"
+      :foreground-color="colorGroup.colorContainer"
+    />
   </tr>
-  <tr style="height: 5px"/>
+  <tr style="height: 5px" />
 </template>
 
 <style scoped>

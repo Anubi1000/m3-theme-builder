@@ -1,4 +1,4 @@
-import {ColorGroup, CorePalette, TonalPalette} from "@material/material-color-utilities";
+import {ColorGroup, CorePalette, TonalPalette} from "@material/material-color-utilities"
 
 export class CustomScheme {
     readonly primaryGroup: ColorGroup
@@ -45,36 +45,36 @@ export class CustomScheme {
         inverseOnSurface: number, inversePrimary: number,
         isDark: boolean
     ) {
-        this.primaryGroup = primaryGroup;
-        this.secondaryGroup = secondaryGroup;
-        this.tertiaryGroup = tertiaryGroup;
-        this.errorGroup = errorGroup;
+        this.primaryGroup = primaryGroup
+        this.secondaryGroup = secondaryGroup
+        this.tertiaryGroup = tertiaryGroup
+        this.errorGroup = errorGroup
 
-        this.surfaceDim = surfaceDim;
-        this.surface = surface;
-        this.surfaceBright = surfaceBright;
+        this.surfaceDim = surfaceDim
+        this.surface = surface
+        this.surfaceBright = surfaceBright
 
-        this.surfaceContainerLowest = surfaceContainerLowest;
-        this.surfaceContainerLow = surfaceContainerLow;
-        this.surfaceContainer = surfaceContainer;
-        this.surfaceContainerHigh = surfaceContainerHigh;
-        this.surfaceContainerHighest = surfaceContainerHighest;
+        this.surfaceContainerLowest = surfaceContainerLowest
+        this.surfaceContainerLow = surfaceContainerLow
+        this.surfaceContainer = surfaceContainer
+        this.surfaceContainerHigh = surfaceContainerHigh
+        this.surfaceContainerHighest = surfaceContainerHighest
 
-        this.onSurface = onSurface;
-        this.surfaceVariant = surfaceVariant;
-        this.onSurfaceVariant = onSurfaceVariant;
+        this.onSurface = onSurface
+        this.surfaceVariant = surfaceVariant
+        this.onSurfaceVariant = onSurfaceVariant
 
-        this.background = background;
-        this.onBackground = onBackground;
+        this.background = background
+        this.onBackground = onBackground
 
-        this.outline = outline;
-        this.outlineVariant = outlineVariant;
+        this.outline = outline
+        this.outlineVariant = outlineVariant
 
-        this.scrim = scrim;
+        this.scrim = scrim
 
-        this.inverseSurface = inverseSurface;
-        this.inverseOnSurface = inverseOnSurface;
-        this.inversePrimary = inversePrimary;
+        this.inverseSurface = inverseSurface
+        this.inverseOnSurface = inverseOnSurface
+        this.inversePrimary = inversePrimary
 
         this.isDark = isDark
     }

@@ -1,5 +1,5 @@
-import {CustomTheme} from "./CustomTheme.ts";
-import {firstCharUppercase} from "../Util.ts";
+import {CustomTheme} from "./CustomTheme.ts"
+import {firstCharUppercase} from "../Util.ts"
 
 export function generateExtendedColorsKT(theme: CustomTheme, packageId: string): string {
     let buffer = `package ${packageId}\n\n` +

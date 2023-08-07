@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {hexFromArgb} from "@material/material-color-utilities";
-import {computed} from "vue";
+import {hexFromArgb} from "@material/material-color-utilities"
+import {computed} from "vue"
 
 const props = defineProps<{
   name: string,
@@ -9,14 +9,19 @@ const props = defineProps<{
 }>()
 
 const text = computed(() => {
-  return `${props.name} (${hexFromArgb(props.backgroundColor).toUpperCase()})`
+    return `${props.name} (${hexFromArgb(props.backgroundColor).toUpperCase()})`
 })
 </script>
 
 <template>
   <td :style="{ backgroundColor: hexFromArgb(backgroundColor)}">
     <div class="colorBlockContainer">
-      <p class="colorBlockText" :style="{ color: hexFromArgb(foregroundColor) }">{{ text }}</p>
+      <p
+        class="colorBlockText"
+        :style="{ color: hexFromArgb(foregroundColor) }"
+      >
+        {{ text }}
+      </p>
     </div>
   </td>
 </template>

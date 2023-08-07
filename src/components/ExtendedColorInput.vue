@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref, watch} from "vue";
+import {ref, watch} from "vue"
 
 const props = defineProps<{
   name: string,
@@ -7,37 +7,52 @@ const props = defineProps<{
   harmonize: boolean
 }>()
 const emit = defineEmits<{
-  (e: 'update:name', name: string): void,
-  (e: 'update:color', color: string): void,
-  (e: 'update:harmonize', harmonize: boolean): void,
-  (e: 'delete'): void
+  (e: "update:name", name: string): void,
+  (e: "update:color", color: string): void,
+  (e: "update:harmonize", harmonize: boolean): void,
+  (e: "delete"): void
 }>()
 
+// eslint-disable-next-line vue/no-setup-props-destructure
 const harmonizeBoolean = ref(props.harmonize)
 
 watch(harmonizeBoolean, (value) => {
-  emit("update:harmonize", value)
+    emit("update:harmonize", value)
 })
 </script>
 
 <template>
   <tr>
     <td>
-      <div style="height: 5px"/>
+      <div style="height: 5px" />
     </td>
   </tr>
   <tr class="extendedColorInputRow">
     <td>
-      <input type="color" class="extendedColorInput" @input="$emit('update:color', ($event.target as HTMLInputElement).value)" :value="color">
+      <input
+        type="color"
+        class="extendedColorInput"
+        :value="color"
+        @input="$emit('update:color', ($event.target as HTMLInputElement).value)"
+      >
     </td>
     <td>
-      <input type="text" @input="$emit('update:name', ($event.target as HTMLInputElement).value)" :value="name">
+      <input
+        type="text"
+        :value="name"
+        @input="$emit('update:name', ($event.target as HTMLInputElement).value)"
+      >
     </td>
     <td style="text-align: center">
-      <input type="checkbox" v-model="harmonizeBoolean">
+      <input
+        v-model="harmonizeBoolean"
+        type="checkbox"
+      >
     </td>
     <td>
-      <button @click="$emit('delete')">Delete</button>
+      <button @click="$emit('delete')">
+        Delete
+      </button>
     </td>
   </tr>
 </template>

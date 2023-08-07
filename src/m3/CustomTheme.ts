@@ -1,8 +1,8 @@
-import {CorePalette, customColor, CustomColor, CustomColorGroup} from "@material/material-color-utilities";
-import {CustomScheme} from "./CustomScheme";
-import {generateColorsKT} from "./ColorsKT.ts";
-import {generateThemeKT} from "./ThemeKT.ts";
-import {generateExtendedColorsKT} from "./ExtendedColorsKT.ts";
+import {CorePalette, customColor, CustomColor, CustomColorGroup} from "@material/material-color-utilities"
+import {CustomScheme} from "./CustomScheme"
+import {generateColorsKT} from "./ColorsKT.ts"
+import {generateThemeKT} from "./ThemeKT.ts"
+import {generateExtendedColorsKT} from "./ExtendedColorsKT.ts"
 
 export class CustomTheme {
     schemes: {
@@ -13,9 +13,9 @@ export class CustomTheme {
     customColors: CustomColorGroup[]
 
     constructor(schemes: { light: CustomScheme; dark: CustomScheme }, corePalette: CorePalette, customColors: CustomColorGroup[]) {
-        this.schemes = schemes;
-        this.corePalette = corePalette;
-        this.customColors = customColors;
+        this.schemes = schemes
+        this.corePalette = corePalette
+        this.customColors = customColors
     }
 
     toColorsKT(packageId: string): string {

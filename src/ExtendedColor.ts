@@ -1,4 +1,4 @@
-import {argbFromHex, CustomColor} from "@material/material-color-utilities";
+import {argbFromHex, CustomColor} from "@material/material-color-utilities"
 
 export interface ExtendedColor {
     name: string

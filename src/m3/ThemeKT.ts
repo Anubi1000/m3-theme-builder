@@ -1,5 +1,5 @@
-import {CustomTheme} from "./CustomTheme.ts";
-import {firstCharUppercase} from "../Util.ts";
+import {CustomTheme} from "./CustomTheme.ts"
+import {firstCharUppercase} from "../Util.ts"
 
 export function generateThemeKT(theme: CustomTheme, packageId: string): string {
     let buffer = `package ${packageId}\n\n` +
@@ -21,7 +21,7 @@ function generateContent(isDark: boolean): string {
 
     let buffer = `private val ${uiModeLarge}ColorScheme = ${uiModeSmall}ColorScheme(\n`
 
-    const addColor = (name: string) => buffer += `    ${name} = m3_${uiModeSmall}_${name},\n`;
+    const addColor = (name: string) => buffer += `    ${name} = m3_${uiModeSmall}_${name},\n`
 
     function addColorWithOn(name: string) {
         const nameSmall = name

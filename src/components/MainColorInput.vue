@@ -3,14 +3,21 @@ defineProps<{
   color: string
 }>()
 defineEmits<{
-  (e: 'update:color', color: string): void,
+  (e: "update:color", color: string): void,
 }>()
 </script>
 
 <template>
   <div class="row mainColorInputCard">
-    <input type="color" class="mainColorInput" @input="$emit('update:color', ($event.target as HTMLInputElement).value)" :value="color">
-    <p class="mainColorInputLabel">Primary</p>
+    <input
+      type="color"
+      class="mainColorInput"
+      :value="color"
+      @input="$emit('update:color', ($event.target as HTMLInputElement).value)"
+    >
+    <p class="mainColorInputLabel">
+      Primary
+    </p>
   </div>
 </template>
 

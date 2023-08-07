@@ -1,7 +1,7 @@
-import {ColorGroup, CustomColorGroup, hexFromArgb} from "@material/material-color-utilities";
-import {CustomScheme} from "./CustomScheme.ts";
-import {CustomTheme} from "./CustomTheme.ts";
-import {firstCharUppercase} from "../Util.ts";
+import {ColorGroup, CustomColorGroup, hexFromArgb} from "@material/material-color-utilities"
+import {CustomScheme} from "./CustomScheme.ts"
+import {CustomTheme} from "./CustomTheme.ts"
+import {firstCharUppercase} from "../Util.ts"
 
 export function generateColorsKT(theme: CustomTheme, packageId: string): string {
     let buffer = `package ${packageId}\n\n` +
@@ -21,15 +21,14 @@ function generateContent(scheme: CustomScheme, customColors: CustomColorGroup[])
 
     function generateLine(color: number, name: string, space: string) {
         const hex = hexFromArgb(color).slice(1).toUpperCase()
-        const uiMode = scheme.isDark ? "dark" : "light";
+        const uiMode = scheme.isDark ? "dark" : "light"
         buffer += `val ${space}_${uiMode}_${name} = Color(0xFF${hex})\n`
     }
 
     const generateM3Line = (color: number, name: string) => generateLine(color, name, "m3")
     const generateSingleM3 = (name: string) => {
-        // @ts-ignore
         generateM3Line(scheme[name], name)
-    };
+    }
 
     const generateCustomLine = (color: number, name: string) => generateLine(color, name, "custom")
 
@@ -76,7 +75,7 @@ function generateContent(scheme: CustomScheme, customColors: CustomColorGroup[])
 
     for (const customColorGroup of customColors) {
         const colorName = customColorGroup.color.name.charAt(0).toLowerCase() + customColorGroup.color.name.slice(1)
-        const colorGroup = scheme.isDark ? customColorGroup.dark : customColorGroup.light;
+        const colorGroup = scheme.isDark ? customColorGroup.dark : customColorGroup.light
         generateColorGroup(colorGroup, colorName, generateCustomLine)
     }
 
