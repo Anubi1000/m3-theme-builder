@@ -1,23 +1,73 @@
 import {CustomTheme} from "./CustomTheme.ts"
 import {firstCharUppercase} from "../Util.ts"
 
-export function generateThemeKT(theme: CustomTheme, packageId: string): string {
-    let buffer = `package ${packageId}\n\n` +
-        "import androidx.compose.material3.darkColorScheme\n" +
-        "import androidx.compose.material3.lightColorScheme\n\n"
+export function generateThemeKT(theme: CustomTheme, packageId: string, themeName: string, typographyClassName: string): string {
+    let buffer = `package ${packageId}\n
+import android.content.Context
+import android.os.Build
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.platform.LocalContext\n\n`
 
-    buffer += generateContent(false)
+    buffer += generateThemeVariable(false)
     buffer += "\n"
-    buffer += generateContent(true)
+    buffer += generateThemeVariable(true)
 
-    theme
+    buffer += `
+@Composable
+fun ${themeName}(
+    useDarkTheme: Boolean = isSystemInDarkTheme(),
+    useMaterialYou: Boolean = false,
+    context: Context = LocalContext.current,
+    content: @Composable () -> Unit
+) {
+    val colors = if (useMaterialYou && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        if (useDarkTheme) {
+            dynamicDarkColorScheme(context)
+        } else {
+            dynamicLightColorScheme(context)
+        }
+    } else {
+        if (useDarkTheme) {
+            DarkColorScheme
+        } else {
+            LightColorScheme
+        }
+    }
+
+    MaterialTheme(
+        colorScheme = colors,
+        typography = ${typographyClassName},`
+
+    if (theme.customColors.length != 0) {
+        buffer += `
+        content = {
+            CompositionLocalProvider(
+                LocalExtendedColors provides if (useDarkTheme) darkExtendedColors() else lightExtendedColors(),
+                content = content
+            )
+        }`
+    } else {
+        buffer += `
+        content = content`
+    }
+
+    buffer += `
+    )
+}`
 
     console.log(buffer)
 
     return buffer
 }
 
-function generateContent(isDark: boolean): string {
+function generateThemeVariable(isDark: boolean): string {
     const uiModeSmall = isDark ? "dark" : "light"
     const uiModeLarge = firstCharUppercase(uiModeSmall)
 

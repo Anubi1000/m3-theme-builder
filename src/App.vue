@@ -16,6 +16,8 @@ const customTheme = computed(() => {
 })
 
 const packageId = ref("com.example")
+const themeName = ref("ExampleTheme")
+const typographyClassName = ref("ExampleTypography")
 
 function addNewExtendedColor() {
     extendedColors.push({
@@ -43,10 +45,16 @@ async function download() {
         theme?.file("ExtendedColors.kt", extendedColorsKT)
     }
 
-    const themeKT = customTheme.value.toThemeKT(packageId.value)
+    const themeKT = customTheme.value.toThemeKT(packageId.value, themeName.value, typographyClassName.value)
     theme?.file("Theme.kt", themeKT)
 
-    const generatedZip = await zip.generateAsync({ type: "blob" })
+    const generatedZip = await zip.generateAsync({
+        type: "blob",
+        compression: "DEFLATE",
+        compressionOptions: {
+            level: 9
+        }
+    })
     FileSaver.saveAs(generatedZip, "theme.zip")
 }
 </script>
@@ -60,7 +68,7 @@ async function download() {
       <h3 style="padding-top: 30px">
         Extended colors
       </h3>
-      <table class="ex">
+      <table class="extendedColorInputTable">
         <tr>
           <th>Color</th>
           <th>Name</th>
@@ -81,13 +89,23 @@ async function download() {
       </button>
 
       <div style="height: 50px" />
-      <input
-        v-model="packageId"
-        type="text"
-      >
-      <button @click="download">
-        Generate
-      </button>
+      <div style="display: flex; flex-direction: column">
+        <input
+          v-model="packageId"
+          type="text"
+        >
+        <input
+          v-model="themeName"
+          type="text"
+        >
+        <input
+          v-model="typographyClassName"
+          type="text"
+        >
+        <button @click="download">
+          Generate
+        </button>
+      </div>
     </div>
 
     <div style="padding-left: 50px; flex: 1">
@@ -111,7 +129,7 @@ async function download() {
 </template>
 
 <style scoped>
-.ex {
+.extendedColorInputTable {
   border-spacing: 0;
   table-layout: fixed;
 }

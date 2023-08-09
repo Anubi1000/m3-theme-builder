@@ -22,8 +22,8 @@ export class CustomTheme {
         return generateColorsKT(this, packageId)
     }
 
-    toThemeKT(packageId: string): string {
-        return generateThemeKT(this, packageId)
+    toThemeKT(packageId: string, themeName: string, typographyClassName: string): string {
+        return generateThemeKT(this, packageId, themeName, typographyClassName)
     }
 
     toExtendedColorsKT(packageId: string): string {
