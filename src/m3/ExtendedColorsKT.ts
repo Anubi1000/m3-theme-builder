@@ -1,5 +1,5 @@
 import {CustomTheme} from "./CustomTheme.ts"
-import {firstCharUppercase} from "../Util.ts"
+import {firstCharLowercase, firstCharUppercase} from "../Util.ts"
 
 export function generateExtendedColorsKT(theme: CustomTheme, packageId: string): string {
     let buffer = `package ${packageId}\n\n` +
@@ -22,8 +22,6 @@ export function generateExtendedColorsKT(theme: CustomTheme, packageId: string):
         "    @ReadOnlyComposable\n" +
         "    get() = LocalExtendedColors.current\n"
 
-    console.log(buffer)
-
     return buffer
 }
 
@@ -35,8 +33,8 @@ function generateClass(customColorNames: string[]): string {
     }
 
     function generateColorGroup(name: string) {
-        const nameSmall = name
-        const nameLarge = firstCharUppercase(nameSmall)
+        const nameSmall = firstCharLowercase(name)
+        const nameLarge = firstCharUppercase(name)
 
         generateLine(nameSmall)
         generateLine(`on${nameLarge}`)
@@ -61,8 +59,8 @@ function generateDarkExtendedColors(customColorNames: string[]): string {
     }
 
     function generateColorGroup(name: string) {
-        const nameSmall = name
-        const nameLarge = firstCharUppercase(nameSmall)
+        const nameSmall = firstCharLowercase(name)
+        const nameLarge = firstCharUppercase(name)
 
         generateLine(nameSmall)
         generateLine(`on${nameLarge}`)
