@@ -1,0 +1,29 @@
+name: Build page
+
+on:
+  push:
+    branches-ignore:
+      - "main"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+      - name: Install dependencies
+        run: npm install
+      - name: Lint
+        run: npm run lint
+      - name: Build
+        run: npm run build
+      - name: Upload page
+        uses: actions/upload-artifact@v3
+        with:
+          name: page
+          path: "./dist"
