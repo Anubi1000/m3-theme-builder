@@ -11,8 +11,6 @@ export function generateColorsKT(theme: CustomTheme, packageId: string): string 
     buffer += "\n"
     buffer += generateContent(theme.schemes.dark, theme.customColors)
 
-    console.log(buffer)
-
     return buffer
 }
 

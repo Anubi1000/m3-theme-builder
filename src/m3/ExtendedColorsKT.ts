@@ -22,8 +22,6 @@ export function generateExtendedColorsKT(theme: CustomTheme, packageId: string):
         "    @ReadOnlyComposable\n" +
         "    get() = LocalExtendedColors.current\n"
 
-    console.log(buffer)
-
     return buffer
 }
 

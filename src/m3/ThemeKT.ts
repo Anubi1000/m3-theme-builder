@@ -60,9 +60,7 @@ fun ${themeName}(
 
     buffer += `
     )
-}`
-
-    console.log(buffer)
+}\n`
 
     return buffer
 }
