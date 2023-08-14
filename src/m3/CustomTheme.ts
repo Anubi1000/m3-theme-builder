@@ -1,4 +1,11 @@
-import {CorePalette, customColor, CustomColor, CustomColorGroup} from "@material/material-color-utilities"
+import {
+    CorePalette,
+    customColor,
+    CustomColor,
+    CustomColorGroup,
+    Hct,
+    TonalPalette
+} from "@material/material-color-utilities"
 import {CustomScheme} from "./CustomScheme"
 import {generateColorsKT} from "./ColorsKT.ts"
 import {generateThemeKT} from "./ThemeKT.ts"
@@ -31,8 +38,19 @@ export class CustomTheme {
     }
 }
 
+function generateCorePalette(argb: number): CorePalette {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const palette = new CorePalette(argb, false)
+
+    const hue = Hct.fromInt(argb).hue
+    palette.n1 = TonalPalette.fromHueAndChroma(hue, 6)
+
+    return palette
+}
+
 export function customThemeFromColor(argb: number, extendedColors: CustomColor[]): CustomTheme {
-    const corePalette = CorePalette.contentOf(argb)
+    const corePalette = generateCorePalette(argb)
     return new CustomTheme(
         {
             light: CustomScheme.customLightSchemeFromCorePalette(corePalette),

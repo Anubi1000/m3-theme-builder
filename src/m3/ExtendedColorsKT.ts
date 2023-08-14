@@ -26,7 +26,7 @@ export function generateExtendedColorsKT(theme: CustomTheme, packageId: string):
 }
 
 function generateClass(customColorNames: string[]): string {
-    let buffer = "class ExtendedColors(\n"
+    let buffer = "data class ExtendedColors(\n"
 
     function generateLine(name: string) {
         buffer += `    val ${name}: Color = custom_light_${name},\n`
